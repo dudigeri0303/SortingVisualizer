@@ -41,5 +41,8 @@
     <ClInclude Include="SortableRect.h">
       <Filter>Header Files\VisualizerComponents</Filter>
     </ClInclude>
+    <ClInclude Include="InsertionSort.h">
+      <Filter>Header Files\SortingAlgos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

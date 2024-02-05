@@ -56,12 +56,20 @@ bool RectContainer::IsSorted() {
 }
 
 void RectContainer::ChangeSelectedColor(int i, int j) {
-	rects[i]->color = GREEN;
-	rects[j]->color = GREEN;
+	if (i > 0) {
+		rects[i]->color = GREEN;
+	}
+	if (j > 0) {
+		rects[j]->color = GREEN;
+	}
 }
 
 void RectContainer::ChangeSelectedColorBack(int i, int j) {
-	rects[i]->color = BLACK;
-	rects[j]->color = BLACK;
+	if (i > 0) {
+		rects[i]->color = BLACK;
+	}
+	if (j > 0) {
+		rects[j]->color = BLACK;
+	}
 }
 
