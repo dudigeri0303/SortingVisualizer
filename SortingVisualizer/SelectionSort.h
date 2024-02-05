@@ -3,11 +3,35 @@
 class SelectionSort : ISortingAlgo {
 public:
 	int i = 0;
-	int j = 0;
+	int j = i + 1;
+	int min = i;
 
 	virtual void Sort(std::vector<SortableRect*> rects) override {
-	
+		if (rects[j]->rect->height < rects[min]->rect->height) {
+			min = j;
+		}
+		if (j < rects.size()) {
+			j++;
+		}
+		if (j == rects.size() && i < rects.size() - 1) {
+			auto temp = rects[i]->rect->height;
+			rects[i]->rect->height = rects[min]->rect->height;
+			rects[min]->rect->height = temp;
+			i++;
+			j = i + 1;
+			min = i;
+		}
+
+		/*for (int i = 0; i < rects.size() - 1; i++) {
+			int min = i;
+			for (int j = i + 1; j < rects.size(); j++) {
+				if (rects[j]->rect->height < rects[min]->rect->height) {
+					min = j;
+				}
+			}
+			auto temp = rects[i]->rect->height;
+			rects[i]->rect->height = rects[min]->rect->height;
+			rects[min]->rect->height = temp;
+		}*/
 	}
-
-
 };

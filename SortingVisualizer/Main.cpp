@@ -5,6 +5,7 @@
 #include "RectContainer.h"
 #include "BubbleSort.h"
 #include "InsertionSort.h"
+#include "SelectionSort.h"
 
 int main(void)
 {
@@ -17,38 +18,42 @@ int main(void)
     RectContainer* rects = new RectContainer();
     BubbleSort* bubbleSort = new BubbleSort();
     InsertionSort* insertionSort = new InsertionSort();
+    SelectionSort* selectionSort = new SelectionSort();
+
+    //selectionSort->Sort(rects->rects);
 
     InitWindow(windowWidth, windowHeight, "Sorting Visualizer");
-    
+
     while (!WindowShouldClose())
     {
         if (!rects->IsSorted()) {
             rects->ChangeSelectedColor(insertionSort->i, insertionSort->j);
         }
-        
+
         BeginDrawing();
         ClearBackground(RAYWHITE);
         rects->Draw();
         EndDrawing();
-        
-       if (!rects->IsSorted()) {
-            rects->ChangeSelectedColorBack(insertionSort->i, insertionSort->j);
-       }
 
-       if (!rects->IsSorted()) {
-            insertionSort->Sort(rects->rects);
-       }
-       else {
-           std::cout << "SORTED" << std::endl;
-       }
-       //std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        if (!rects->IsSorted()) {
+            rects->ChangeSelectedColorBack(insertionSort->i, insertionSort->j);
+        }
+
+        if (!rects->IsSorted()) {
+            selectionSort->Sort(rects->rects);
+        }
+        else {
+            std::cout << "SORTED" << std::endl;
+        }
+        //std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 
     CloseWindow();
     delete rects;
     delete bubbleSort;
     delete insertionSort;
-    
+    delete selectionSort;
+
     _CrtDumpMemoryLeaks();
     return 0;
 }
