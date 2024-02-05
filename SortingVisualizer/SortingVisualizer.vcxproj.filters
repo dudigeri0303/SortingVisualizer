@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\SortingAlgos">
+      <UniqueIdentifier>{57b5d8b3-f96a-476c-89fe-089f567d98f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\VisualizerComponents">
+      <UniqueIdentifier>{fbc43918-03fa-40a9-8e13-e6e14d28702c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -20,17 +26,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SortableRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RectContainer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="BubbleSort.h">
+      <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>
     <ClInclude Include="ISortingAlgo.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>
-    <ClInclude Include="BubbleSort.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SelectionSort.h">
+      <Filter>Header Files\SortingAlgos</Filter>
+    </ClInclude>
+    <ClInclude Include="RectContainer.h">
+      <Filter>Header Files\VisualizerComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="SortableRect.h">
+      <Filter>Header Files\VisualizerComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

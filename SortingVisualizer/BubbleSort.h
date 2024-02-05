@@ -12,11 +12,10 @@ public:
 			rects[j]->rect->height = rects[j+1]->rect->height;
 			rects[j+1]->rect->height = temp;
 		}
-		if (j < rects.size() - 1) {
+		if (j < rects.size() - i) {
 			j++;
-
 		}
-		if (j == rects.size() - 1 && i < rects.size()) {
+		if (j == rects.size() - i && i < rects.size()) {
 			i++;
 			j = 0;
 		}

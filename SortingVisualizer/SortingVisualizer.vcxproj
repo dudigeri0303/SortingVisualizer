@@ -138,6 +138,7 @@
     <ClInclude Include="BubbleSort.h" />
     <ClInclude Include="ISortingAlgo.h" />
     <ClInclude Include="RectContainer.h" />
+    <ClInclude Include="SelectionSort.h" />
     <ClInclude Include="SortableRect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
