@@ -2,6 +2,7 @@
 #define SORTABLERECT_H
 #include <iostream>
 #include "raylib.h"
+#include "raygui.h"
 
 class SortableRect {
 private:

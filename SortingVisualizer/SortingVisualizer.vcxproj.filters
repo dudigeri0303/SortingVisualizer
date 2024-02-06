@@ -19,6 +19,9 @@
     <Filter Include="Header Files\VisualizerComponents">
       <UniqueIdentifier>{fbc43918-03fa-40a9-8e13-e6e14d28702c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Ui">
+      <UniqueIdentifier>{39dbbcf8-efd3-4679-9f38-403ad17a1296}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -43,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="InsertionSort.h">
       <Filter>Header Files\SortingAlgos</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>Header Files\Ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,17 +21,5 @@ public:
 			j = i + 1;
 			min = i;
 		}
-
-		/*for (int i = 0; i < rects.size() - 1; i++) {
-			int min = i;
-			for (int j = i + 1; j < rects.size(); j++) {
-				if (rects[j]->rect->height < rects[min]->rect->height) {
-					min = j;
-				}
-			}
-			auto temp = rects[i]->rect->height;
-			rects[i]->rect->height = rects[min]->rect->height;
-			rects[min]->rect->height = temp;
-		}*/
 	}
 };
