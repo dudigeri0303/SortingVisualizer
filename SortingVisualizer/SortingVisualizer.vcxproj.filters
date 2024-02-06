@@ -50,5 +50,8 @@
     <ClInclude Include="Gui.h">
       <Filter>Header Files\Ui</Filter>
     </ClInclude>
+    <ClInclude Include="SortingAlgoContainer.h">
+      <Filter>Header Files\SortingAlgos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
