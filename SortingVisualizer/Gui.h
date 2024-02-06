@@ -10,10 +10,15 @@
 
 class Gui {
 private:
+	bool sortingRunning = false;
+
 	RectContainer* rectContainer;
 	BubbleSort* bubbleSort;
 	InsertionSort* insertionSort;
 	SelectionSort* selectionSort;
+
+	void SortingLogic();
+	void HandleAndDrawSortButton();
 
 
 public:
@@ -21,7 +26,6 @@ public:
 	~Gui();
 	void Update();
 	void Draw();
-
 };
 
 Gui::Gui() {
@@ -37,25 +41,42 @@ Gui::~Gui() {
 	delete insertionSort;
 	delete selectionSort;
 }
+//Button Handling
+void Gui::HandleAndDrawSortButton() {
+	if (GuiButton({ 0, 0, 200, 50 }, "Sort!")) {
+		sortingRunning = sortingRunning == true ? false : true;
+	}
+}
+
+void Gui::SortingLogic() {
+	if (sortingRunning) {
+		if (!rectContainer->IsSorted()) {
+			rectContainer->ChangeSelectedColorBack(bubbleSort->j, insertionSort->j + 1);
+		}
+
+		if (!rectContainer->IsSorted()) {
+			bubbleSort->Sort(rectContainer->rects);
+		}
+		else {
+			std::cout << "SORTED" << std::endl;
+			sortingRunning = false;
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(0));
+
+		if (!rectContainer->IsSorted()) {
+			rectContainer->ChangeSelectedColor(bubbleSort->j, insertionSort->j + 1);
+		}
+	}
+}
 
 void Gui::Update() {
-	if (!rectContainer->IsSorted()) {
-		rectContainer->ChangeSelectedColorBack(bubbleSort->j, insertionSort->j + 1);
-	}
-
-	if (!rectContainer->IsSorted()) {
-		bubbleSort->Sort(rectContainer->rects);
-	}
-	else {
-		std::cout << "SORTED" << std::endl;
-	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(0));
+	HandleAndDrawSortButton();
+	SortingLogic();
 }
 
 void Gui::Draw() {
-	if (!rectContainer->IsSorted()) {
-		rectContainer->ChangeSelectedColor(bubbleSort->j, insertionSort->j + 1);
-	}
+	
 	rectContainer->Draw();
 
+	
 }
