@@ -1,7 +1,7 @@
 #pragma once
 #include "ISortingAlgo.h"
 
-class BubbleSort : ISortingAlgo{
+class BubbleSort : public ISortingAlgo{
 public:
 	int i = 1;
 	int j = 0;
@@ -19,5 +19,10 @@ public:
 			i++;
 			j = 0;
 		}
+	}
+	
+	virtual void Reset() override {
+		i = 1;
+		j = 0;
 	}
 };

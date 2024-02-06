@@ -1,6 +1,6 @@
 #pragma once
 #include "ISortingAlgo.h"
-class SelectionSort : ISortingAlgo {
+class SelectionSort : public ISortingAlgo {
 public:
 	int i = 0;
 	int j = i + 1;
@@ -21,5 +21,11 @@ public:
 			j = i + 1;
 			min = i;
 		}
+	}
+
+	virtual void Reset() override {
+		i = 0;
+		j = i + 1;
+		min = i;
 	}
 };

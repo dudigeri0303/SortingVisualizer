@@ -8,5 +8,6 @@ class ISortingAlgo {
 public:
 	virtual ~ISortingAlgo() {};
 	virtual void Sort(std::vector<SortableRect*>) = 0;
+	virtual void Reset() = 0;
 };
 #endif

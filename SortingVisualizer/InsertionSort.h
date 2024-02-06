@@ -1,6 +1,6 @@
 #pragma once
 #include "ISortingAlgo.h"
-class InsertionSort : ISortingAlgo {
+class InsertionSort : public ISortingAlgo {
 public:
 	int j = 0;
 	int i = j-1;
@@ -20,5 +20,11 @@ public:
 			key = rects[j]->rect->height;
 			i = j - 1;
 		}
+	}
+
+	virtual void Reset() override {
+		j = 0;
+		i = j - 1;
+		key = 0.0f;
 	}
 };

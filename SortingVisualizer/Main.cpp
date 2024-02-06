@@ -16,8 +16,8 @@ int main(void)
 
     while (!WindowShouldClose())
     {
+        gui->DrawAndHandleButtons();
         gui->Update();
-
         BeginDrawing();
         ClearBackground(RAYWHITE);
         gui->Draw();
