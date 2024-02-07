@@ -11,7 +11,7 @@ private:
 	bool sortingRunning = false;
 
 	RectContainer* rectContainer;
-	SortingAlgoContainer* sortingAlgoContainer;
+	SortingAlgoContainer* algoChooser;
 
 	void SortingLogic();
 	void HandleAndDrawSortButton();
@@ -30,12 +30,12 @@ public:
 
 Gui::Gui() {
 	rectContainer = new RectContainer();
-	sortingAlgoContainer = new SortingAlgoContainer();
+	algoChooser = new SortingAlgoContainer();
 }
 
 Gui::~Gui() {
 	delete rectContainer;
-	delete sortingAlgoContainer;
+	delete algoChooser;
 }
 //Button Handling
 void Gui::HandleAndDrawSortButton() {
@@ -63,35 +63,48 @@ void Gui::HandleAndDrawGenerateButton() {
 
 void Gui::HandleAlgoChooser() {
 	if (GuiButton({ 650, 0, 100, 50 }, "Previous!")) {
-		sortingAlgoContainer->DecreaseSelectedAlgoIndex();
+		algoChooser->DecreaseSelectedAlgoIndex();
 	}
 
-	GuiLabel({ 760, 0, 90, 50 }, sortingAlgoContainer->algoNames[sortingAlgoContainer->selectedAlgoIndex]);
+	GuiLabel({ 760, 0, 90, 50 }, algoChooser->algoNames[algoChooser->selectedAlgoIndex]);
 
 	if (GuiButton({ 860, 0, 100, 50 }, "Next!")) {
-		sortingAlgoContainer->InscraseSelectedAlgoIndex();
+		algoChooser->InscraseSelectedAlgoIndex();
 	}
 }
 
 void Gui::SortingLogic() {
 	if (sortingRunning) {
-		/*if (!rectContainer->IsSorted()) {
-			rectContainer->ChangeSelectedColorBack(bubbleSort->j, insertionSort->j + 1);
-		}*/
+		//Changing the actual rects colors back to black
+		if (algoChooser->selectedAlgoIndex == 0) {
+			if (!rectContainer->IsSorted()) {
+				rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1);
+			}
+		}
+		else {
+			rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j);
+		}
 
+		//Running the sorting algo if the rects arent sorted already
 		if (!rectContainer->IsSorted()) {
-			sortingAlgoContainer->algos[sortingAlgoContainer->selectedAlgoIndex]->Sort(rectContainer->rects);
+			algoChooser->algos[algoChooser->selectedAlgoIndex]->Sort(rectContainer->rects);
 		}
 		else {
 			std::cout << "SORTED" << std::endl;
 			sortingRunning = false;
-			sortingAlgoContainer->algos[sortingAlgoContainer->selectedAlgoIndex]->Reset();
+			algoChooser->algos[algoChooser->selectedAlgoIndex]->Reset();
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(0));
 
-		/*if (!rectContainer->IsSorted()) {
-			rectContainer->ChangeSelectedColor(bubbleSort->j, insertionSort->j + 1);
-		}*/
+		//Changing the the actual rects colors to green
+		if (algoChooser->selectedAlgoIndex == 0) {
+			if (!rectContainer->IsSorted()) {
+				rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1);
+			}
+		}
+		else {
+			rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j);
+		}
 	}
 }
 
