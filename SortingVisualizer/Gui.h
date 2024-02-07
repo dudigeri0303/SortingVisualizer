@@ -9,7 +9,8 @@
 class Gui {
 private:
 	bool sortingRunning = false;
-
+	float delay = 0.0f;
+	float size = 170.0f;
 	RectContainer* rectContainer;
 	SortingAlgoContainer* algoChooser;
 
@@ -17,8 +18,9 @@ private:
 	void HandleAndDrawSortButton();
 	void HandleAndDrawStopButton();
 	void HandleAndDrawGenerateButton();
+	void HandleAndDrawDelaySlider();
+	void HandleAndDrawSizeSlider();
 	void HandleAlgoChooser();
-
 
 public:
 	Gui();
@@ -39,36 +41,40 @@ Gui::~Gui() {
 }
 //Button Handling
 void Gui::HandleAndDrawSortButton() {
-	if (GuiButton({ 0, 0, 200, 50 }, "Sort!")) {
-		if (!sortingRunning) {
-			sortingRunning = true;
-		}
+	if (GuiButton({ 210, 700, 50, 30 }, "Sort!") && !sortingRunning) {
+		sortingRunning = true;
 	}
 }
 
 void Gui::HandleAndDrawStopButton() {
-	if (GuiButton({ 210, 0, 200, 50 }, "Stop!")) {
-		if (sortingRunning) {
-			sortingRunning = false;
-		}
+	if (GuiButton({ 210, 750, 50, 30 }, "Stop!") && sortingRunning) {
+		sortingRunning = false;
 	}
 }
 
 void Gui::HandleAndDrawGenerateButton() {
-	if (GuiButton({ 410, 0, 200, 50 }, "Generate New!")) {
+	if (GuiButton({ 300, 700, 150, 30 }, "Generate New!") && !sortingRunning) {
 		sortingRunning = false;
 		rectContainer->GenerateNewRects();
 	}
 }
 
+void Gui::HandleAndDrawDelaySlider() {
+	delay = GuiSlider({ 530, 750, 170, 30 }, "Delay", NULL, &delay, 0.0f, 500.0f);
+}
+
+void Gui::HandleAndDrawSizeSlider() {
+	size = GuiSlider({ 320, 750, 130, 30 }, "Size", NULL, &size, 10.0f, 170.0f);
+}
+
 void Gui::HandleAlgoChooser() {
-	if (GuiButton({ 650, 0, 100, 50 }, "Previous!")) {
+	if (GuiButton({ 490, 700, 70, 30 }, "Previous!")) {
 		algoChooser->DecreaseSelectedAlgoIndex();
 	}
 
-	GuiLabel({ 760, 0, 90, 50 }, algoChooser->algoNames[algoChooser->selectedAlgoIndex]);
+	GuiLabel({ 570, 700, 90, 30 }, algoChooser->algoNames[algoChooser->selectedAlgoIndex]);
 
-	if (GuiButton({ 860, 0, 100, 50 }, "Next!")) {
+	if (GuiButton({ 650, 700, 70, 30 }, "Next!")) {
 		algoChooser->InscraseSelectedAlgoIndex();
 	}
 }
@@ -94,8 +100,7 @@ void Gui::SortingLogic() {
 			sortingRunning = false;
 			algoChooser->algos[algoChooser->selectedAlgoIndex]->Reset();
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(0));
-
+		
 		//Changing the the actual rects colors to green
 		if (algoChooser->selectedAlgoIndex == 0) {
 			if (!rectContainer->IsSorted()) {
@@ -105,6 +110,9 @@ void Gui::SortingLogic() {
 		else {
 			rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j);
 		}
+
+		//Applying the choosen delay
+		std::this_thread::sleep_for(std::chrono::milliseconds((int)delay));
 	}
 }
 
@@ -112,6 +120,8 @@ void Gui::DrawAndHandleButtons() {
 	HandleAndDrawGenerateButton();
 	HandleAndDrawSortButton();
 	HandleAndDrawStopButton();
+	HandleAndDrawDelaySlider();
+	HandleAndDrawSizeSlider();
 	HandleAlgoChooser();
 }
 
