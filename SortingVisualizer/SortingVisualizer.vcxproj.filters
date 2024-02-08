@@ -59,7 +59,7 @@
     <ClInclude Include="ShellSort.h">
       <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>
-    <ClInclude Include="RadixSort.h">
+    <ClInclude Include="CountingSort.h">
       <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>
   </ItemGroup>

@@ -136,11 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="CountingSort.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="InsertionSort.h" />
     <ClInclude Include="ISortingAlgo.h" />
     <ClInclude Include="MergeSort.h" />
-    <ClInclude Include="RadixSort.h" />
     <ClInclude Include="RectContainer.h" />
     <ClInclude Include="SelectionSort.h" />
     <ClInclude Include="ShellSort.h" />

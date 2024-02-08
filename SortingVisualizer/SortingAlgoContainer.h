@@ -8,6 +8,7 @@
 #include "InsertionSort.h"
 #include "ShellSort.h"
 #include "MergeSort.h"
+#include "CountingSort.h"
 
 class SortingAlgoContainer {
 private:
@@ -30,6 +31,7 @@ SortingAlgoContainer::SortingAlgoContainer(int shellSortN) {
 		new SelectionSort(),
 		new InsertionSort(),
 		new ShellSort(shellSortN),
+		new CountingSort(),
 		new MergeSort()
 	};
 	algoNames = {
@@ -37,6 +39,7 @@ SortingAlgoContainer::SortingAlgoContainer(int shellSortN) {
 		"Selection Sort",
 		"Insertion Sort",
 		"Shell Sort",
+		"Counting Sort"
 		"Merge Sort"
 	};
 }
