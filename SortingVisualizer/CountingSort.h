@@ -5,7 +5,9 @@
 
 class CountingSort : public ISortingAlgo {
 private:
-    std::vector<int> outputArry = {};
+    std::vector<int> outputArray;
+    bool outputArrayCreated;
+    std::vector<int> CreateOutputArray(std::vector<SortableRect*> rects);
 
 public:
 	CountingSort();
@@ -14,49 +16,54 @@ public:
 };
 
 CountingSort::CountingSort() {
-
+    i = 0;
+    outputArrayCreated = false;
 }
 
-void CountingSort::Sort(std::vector<SortableRect*> rects) {
-    int N = rects.size();
+std::vector<int> CountingSort::CreateOutputArray(std::vector<SortableRect*> rects) {
+    int vectorSize = rects.size();
+    int maxValue = 0;
+    for (int i = 0; i < vectorSize; i++) {
+        if ((int)rects[i]->rect->height > maxValue) {
+            maxValue = std::max(maxValue, (int)rects[i]->rect->height);
+        }
+    }
 
-    // Finding the maximum element of array inputArray[].
-    int M = 0;
-
-    for (int i = 0; i < N; i++)
-        M = std::max(M, (int)rects[i]->rect->height);
-
-    // Initializing countArray[] with 0
-    std::vector<int> countArray(M + 1, 0);
-
-    // Mapping each element of inputArray[] as an index
-    // of countArray[] array
-
-    for (int i = 0; i < N; i++)
+    std::vector<int> countArray(maxValue + 1, 0);
+    for (int i = 0; i < vectorSize; i++) {
         countArray[(int)rects[i]->rect->height]++;
-
-    // Calculating prefix sum at every index
-    // of array countArray[]
-    for (int i = 1; i <= M; i++)
+    }
+    for (int i = 1; i <= maxValue; i++) {
         countArray[i] += countArray[i - 1];
+    }
 
-    // Creating outputArray[] from countArray[] array
-    std::vector<int> outputArray(N);
-
-    for (int i = N - 1; i >= 0; i--)
-
-    {
-        outputArray[countArray[rects[i]->rect->height] - 1]
+    std::vector<int> oArray(vectorSize);
+    for (int i = vectorSize - 1; i >= 0; i--){
+        oArray[countArray[rects[i]->rect->height] - 1]
             = rects[i]->rect->height;
 
         countArray[rects[i]->rect->height]--;
     }
+    outputArrayCreated = true;
+    return oArray;
+}
 
-    for (int i = 0; i < rects.size(); i++) {
+void CountingSort::Sort(std::vector<SortableRect*> rects) {
+    if (!outputArrayCreated) {
+        std::cout << i << std::endl;
+        outputArray = CreateOutputArray(rects);
+    }
+    if (i < rects.size() - 1) {
         rects[i]->rect->height = outputArray[i];
+        i++;
+    }
+    else {
+        rects[rects.size() - 1]->rect->height = outputArray[outputArray.size() - 1];
     }
 }
 
 void CountingSort::Reset() {
-
+    i = 0;
+    outputArrayCreated = false;
+    outputArray.clear();
 }
