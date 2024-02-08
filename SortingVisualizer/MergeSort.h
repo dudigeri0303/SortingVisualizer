@@ -26,7 +26,7 @@ MergeSort::MergeSort() {
 	subArraySize = 1;
 	k = i + subArraySize;
 	l = j + subArraySize;
-	iterations = 0;
+	iterations = 1;
 }
 
 void MergeSort::Merge(std::vector<SortableRect*> rects){
@@ -59,22 +59,20 @@ void MergeSort::Sort(std::vector<SortableRect*> rects) {
 	Merge(rects);
 	if (d.size() == subArraySize * 2){
 		//std::cout << d.size() << std::endl;
-		for (int q = 0; q < d.size(); q++) {
-			rects[iterations * (q + 1 ) + 1 + iterations]->rect->height = d[q]->rect->height;
-			std::cout << q << std::endl;
-			std::cout << iterations * (q + 1) + iterations<< std::endl;
-			std::cout << "---------------" << std::endl;
+		int q = i - subArraySize;
+		for (auto r : d) {
+			rects[q]->rect->height = r->rect->height;
 		}
-		std::cout << "++++++++" << std::endl;
-		iterations++;
 		d.clear();
-		i += 2 * subArraySize;
-		j += 2 * subArraySize;
 		k = i + subArraySize;
 		l = j + subArraySize;
-		if (j + subArraySize == rects.size() - 1) {
-			subArraySize *= 2;
-			iterations = 0;
+		if (k > rects.size() - 1) {
+			k = rects.size() - 1;
+			//std::cout << "i:" << i << "-k:" << k << std::endl;
+		}
+		else if (l > rects.size() - 1) {
+			l = rects.size() - 1;
+			//std::cout << "j:" << j << "-l:" << l << std::endl;
 		}
 	}
 }
