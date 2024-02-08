@@ -12,7 +12,7 @@ int main(void)
     const int windowWidth = 1200;
     const int windowHeight = 800;
     InitWindow(windowWidth, windowHeight, "Sorting Visualizer");
-    //SetTargetFPS(500);
+    //SetTargetFPS(2);
     Gui* gui = new Gui();
 
     while (!WindowShouldClose())

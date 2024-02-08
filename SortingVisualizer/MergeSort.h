@@ -9,7 +9,6 @@ private:
 	int subArraySize;
 	int k;
 	int l;
-	int iterations;
 
 	void Merge(std::vector<SortableRect*> rects);
 
@@ -22,61 +21,82 @@ public:
 
 MergeSort::MergeSort() {
 	i = 0;
-	j = 2;
+	j = 1;
 	subArraySize = 1;
 	k = i + subArraySize;
 	l = j + subArraySize;
-	iterations = 1;
 }
 
 void MergeSort::Merge(std::vector<SortableRect*> rects){
 	if (i < k && j < l) {
 		if (rects[i]->rect->height < rects[j]->rect->height) {
 			d.push_back(rects[i]);
+			//std::cout << "i1:" << rects[i]->rect->height << std::endl;
 			i++;
 		}
 		else {
 			d.push_back(rects[j]);
-			j++;
-		}
-	}
-
-	else if (i == k) {
-		if (j < l) {
-			d.push_back(rects[j]);
+			//std::cout << "j1:" << rects[j]->rect->height << std::endl;
 			j++;
 		}
 	}
 	else {
-		if (i < k) {
+		if (j < l) {
+			d.push_back(rects[j]);
+			//std::cout << "j2:" << rects[j]->rect->height << std::endl;
+			j++;
+		}
+		else {	
 			d.push_back(rects[i]);
-			i++;
+			//std::cout << "i2:" << rects[i]->rect->height << std::endl;
+			i++;		
 		}
 	}
 }
 
 void MergeSort::Sort(std::vector<SortableRect*> rects) {
+	std::cout << "i= " << i << std::endl;
+	std::cout << "j= " << j << std::endl;
+	std::cout << "------------" << std::endl;
 	Merge(rects);
 	if (d.size() == subArraySize * 2){
-		//std::cout << d.size() << std::endl;
 		int q = i - subArraySize;
 		for (auto r : d) {
+			//std::cout << "dRect:" << r->rect->height << std::endl;
 			rects[q]->rect->height = r->rect->height;
+			q++;
 		}
 		d.clear();
-		k = i + subArraySize;
-		l = j + subArraySize;
-		if (k > rects.size() - 1) {
-			k = rects.size() - 1;
-			//std::cout << "i:" << i << "-k:" << k << std::endl;
+		//std::cout << "---------" << std::endl;
+		if (j < rects.size()) {
+			if (i + subArraySize < rects.size() - 1) {
+				i = j;
+				k = i + subArraySize;
+				j = i + subArraySize;
+				l = j + subArraySize;
+			}
+			else {
+				i = j;
+				k = i + subArraySize;
+				j = rects.size() - 2;
+				l = rects.size() - 1;
+				//std::cout << "fostosfos" << std::endl;
+			}
 		}
-		else if (l > rects.size() - 1) {
-			l = rects.size() - 1;
-			//std::cout << "j:" << j << "-l:" << l << std::endl;
+		else {
+			subArraySize *= 2;
+			i = 0;
+			j = i + subArraySize;
+			k = i + subArraySize;
+			l = j + subArraySize;
 		}
 	}
 }
 
 void MergeSort::Reset() {
-	
+	i = 0;
+	j = 1;
+	subArraySize = 1;
+	k = i + subArraySize;
+	l = j + subArraySize;
 }

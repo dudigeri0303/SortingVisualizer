@@ -32,7 +32,7 @@ public:
 
 Gui::Gui() {
 	rectContainer = new RectContainer();
-	algoChooser = new SortingAlgoContainer();
+	algoChooser = new SortingAlgoContainer(rectContainer->rects.size()-1);
 }
 
 Gui::~Gui() {
@@ -113,7 +113,7 @@ void Gui::SortingLogic() {
 		}
 
 		//Applying the choosen delay
-		std::this_thread::sleep_for(std::chrono::milliseconds((int)delay));
+		//std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
 }
 

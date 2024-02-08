@@ -6,6 +6,7 @@
 #include "BubbleSort.h";
 #include "SelectionSort.h"
 #include "InsertionSort.h"
+#include "ShellSort.h"
 #include "MergeSort.h"
 
 class SortingAlgoContainer {
@@ -17,23 +18,25 @@ public:
 	std::vector<ISortingAlgo*> algos;
 	std::vector<const char*> algoNames;
 
-	SortingAlgoContainer();
+	SortingAlgoContainer(int);
 	~SortingAlgoContainer();
 	void InscraseSelectedAlgoIndex();
 	void DecreaseSelectedAlgoIndex();
 };
 
-SortingAlgoContainer::SortingAlgoContainer() {
+SortingAlgoContainer::SortingAlgoContainer(int shellSortN) {
 	algos = {
 		new BubbleSort(),
 		new SelectionSort(),
 		new InsertionSort(),
+		new ShellSort(shellSortN),
 		new MergeSort()
 	};
 	algoNames = {
 		"Bubble Sort",
 		"Selection Sort",
 		"Insertion Sort",
+		"Shell Sort",
 		"Merge Sort"
 	};
 }
