@@ -6,6 +6,7 @@
 #include "BubbleSort.h";
 #include "SelectionSort.h"
 #include "InsertionSort.h"
+#include "MergeSort.h"
 
 class SortingAlgoContainer {
 private:
@@ -26,12 +27,14 @@ SortingAlgoContainer::SortingAlgoContainer() {
 	algos = {
 		new BubbleSort(),
 		new SelectionSort(),
-		new InsertionSort()
+		new InsertionSort(),
+		new MergeSort()
 	};
 	algoNames = {
 		"Bubble Sort",
 		"Selection Sort",
-		"InsertionSort"
+		"Insertion Sort",
+		"Merge Sort"
 	};
 }
 

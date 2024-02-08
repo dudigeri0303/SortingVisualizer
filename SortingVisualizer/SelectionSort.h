@@ -28,9 +28,6 @@ void SelectionSort::Sort(std::vector<SortableRect*> rects){
 		auto temp = rects[i]->rect->height;
 		rects[i]->rect->height = rects[min]->rect->height;
 		rects[min]->rect->height = temp;
-		std::cout << i << std::endl;
-		std::cout << j << std::endl;
-		std::cout << "--------------" << std::endl;
 		i++;
 		if (j < rects.size()) {
 			j = i + 1;
@@ -44,7 +41,6 @@ void SelectionSort::Sort(std::vector<SortableRect*> rects){
 }
 
 void SelectionSort::Reset(){
-	std::cout << "++++++++++++++" << std::endl;
 	i = 0;
 	j = i + 1;
 	min = i;

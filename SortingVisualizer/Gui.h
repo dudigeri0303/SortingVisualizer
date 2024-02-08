@@ -56,6 +56,7 @@ void Gui::HandleAndDrawGenerateButton() {
 	if (GuiButton({ 300, 700, 150, 30 }, "Generate New!") && !sortingRunning) {
 		sortingRunning = false;
 		rectContainer->GenerateNewRects();
+		algoChooser->algos[algoChooser->selectedAlgoIndex]->Reset();
 	}
 }
 
@@ -127,6 +128,7 @@ void Gui::DrawAndHandleButtons() {
 
 void Gui::Update() {
 	SortingLogic();
+	//std::cout << GetFPS() << std::endl;
 }
 
 void Gui::Draw() {
