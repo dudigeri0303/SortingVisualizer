@@ -53,9 +53,6 @@
     <ClInclude Include="SortingAlgoContainer.h">
       <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>
-    <ClInclude Include="MergeSort.h">
-      <Filter>Header Files\SortingAlgos</Filter>
-    </ClInclude>
     <ClInclude Include="ShellSort.h">
       <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>

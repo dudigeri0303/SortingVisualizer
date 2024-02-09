@@ -6,7 +6,7 @@
 
 class RectContainer {
 private:
-	std::vector<SortableRect*> FillRectsList();
+	std::vector<SortableRect*> FillRectsList(int);
 public:
 	std::vector<SortableRect*> rects;
 
@@ -15,12 +15,12 @@ public:
 	bool IsSorted();
 	void ChangeSelectedColor(int, int, int);
 	void ChangeSelectedColorBack(int, int, int);
-	void GenerateNewRects();
+	void GenerateNewRects(int);
 	void Draw();
 };
 
 RectContainer::RectContainer() {
-	rects = FillRectsList();
+	rects = FillRectsList(170);
 }
 
 RectContainer::~RectContainer() {
@@ -30,14 +30,16 @@ RectContainer::~RectContainer() {
 	rects.clear();
 }
 
-std::vector<SortableRect*> RectContainer::FillRectsList(){
+std::vector<SortableRect*> RectContainer::FillRectsList(int numOfRects) {
+	float rectWidth = 1200 / numOfRects - 2.0f;
 	if (rects.size() == 0) {
 		std::vector<SortableRect*> returnList;
 		std::random_device dev;
 		std::mt19937 rng(dev());
 		std::uniform_int_distribution<std::mt19937::result_type> dist6(20, 640);
-		for (int i = 0; i < 170; i++) {
-			returnList.push_back(new SortableRect((10.0f + i * 7.0f), 650.0f, 5.0f, (float)dist6(rng)));
+		for (int i = 0; i < numOfRects; i++) {
+			//(self.sbc + self.width)* self.y + self.sbc
+			returnList.push_back(new SortableRect((i * (rectWidth + 2.0f)), 650.0f, rectWidth, (float)dist6(rng)));
 		}
 		return returnList;
 	}
@@ -70,12 +72,12 @@ void RectContainer::ChangeSelectedColorBack(int i, int j, int max) {
 	}
 }
 
-void RectContainer::GenerateNewRects() {
+void RectContainer::GenerateNewRects(int numOfRects) {
 	for (int i = 0; i < rects.size(); i++) {
 		delete rects[i];
 	}
 	rects.clear();
-	rects = FillRectsList();
+	rects = FillRectsList(numOfRects);
 }
 
 void RectContainer::Draw() {

@@ -7,7 +7,6 @@
 #include "SelectionSort.h"
 #include "InsertionSort.h"
 #include "ShellSort.h"
-#include "MergeSort.h"
 #include "CountingSort.h"
 #include "BucketSort.h"
 
@@ -33,8 +32,7 @@ SortingAlgoContainer::SortingAlgoContainer(int shellSortN) {
 		new InsertionSort(),
 		new ShellSort(shellSortN),
 		new CountingSort(),
-		new BucketSort(),
-		new MergeSort()
+		new BucketSort()
 	};
 	algoNames = {
 		"Bubble Sort",
@@ -42,8 +40,7 @@ SortingAlgoContainer::SortingAlgoContainer(int shellSortN) {
 		"Insertion Sort",
 		"Shell Sort",
 		"Counting Sort",
-		"Bucket Sort",
-		"Merge Sort"
+		"Bucket Sort"
 	};
 }
 

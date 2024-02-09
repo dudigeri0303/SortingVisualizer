@@ -11,6 +11,8 @@ private:
 	bool sortingRunning = false;
 	float delay = 0.0f;
 	float size = 170.0f;
+	float sliderValue = 0.0f;
+	float sizeValue = 170;
 	RectContainer* rectContainer;
 	SortingAlgoContainer* algoChooser;
 
@@ -39,7 +41,7 @@ Gui::~Gui() {
 	delete rectContainer;
 	delete algoChooser;
 }
-//Button Handling
+
 void Gui::HandleAndDrawSortButton() {
 	if (GuiButton({ 210, 700, 50, 30 }, "Sort!") && !sortingRunning) {
 		sortingRunning = true;
@@ -55,17 +57,23 @@ void Gui::HandleAndDrawStopButton() {
 void Gui::HandleAndDrawGenerateButton() {
 	if (GuiButton({ 300, 700, 150, 30 }, "Generate New!") && !sortingRunning) {
 		sortingRunning = false;
-		rectContainer->GenerateNewRects();
+		rectContainer->GenerateNewRects(size);
 		algoChooser->algos[algoChooser->selectedAlgoIndex]->Reset();
+		delete algoChooser->algos[3];
+		algoChooser->algos[3] = new ShellSort(size-1);
 	}
 }
 
 void Gui::HandleAndDrawDelaySlider() {
-	delay = GuiSlider({ 530, 750, 170, 30 }, "Delay", NULL, &delay, 0.0f, 500.0f);
+	if(GuiSlider({ 530, 750, 170, 30 }, "Delay", NULL, &sliderValue, 0.0f, 500.0f)) {
+		delay = sliderValue;
+	}
 }
 
 void Gui::HandleAndDrawSizeSlider() {
-	size = GuiSlider({ 320, 750, 130, 30 }, "Size", NULL, &size, 10.0f, 170.0f);
+	if (GuiSlider({ 320, 750, 130, 30 }, "Size", NULL, &sizeValue, 10.0f, 170.0f) && !sortingRunning) {
+		size = sizeValue;
+	}
 }
 
 void Gui::HandleAlgoChooser() {
@@ -82,7 +90,7 @@ void Gui::HandleAlgoChooser() {
 
 void Gui::SortingLogic() {
 	if (sortingRunning) {
-		//Changing the actual rects colors back to black
+		//Changing the selected rects colors back to black
 		if (algoChooser->selectedAlgoIndex == 0) {
 			if (!rectContainer->IsSorted()) {
 				rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1, rectContainer->rects.size());
@@ -91,7 +99,6 @@ void Gui::SortingLogic() {
 		else {
 			rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j, rectContainer->rects.size());
 		}
-
 		//Running the sorting algo if the rects arent sorted already
 		if (!rectContainer->IsSorted()) {
 			algoChooser->algos[algoChooser->selectedAlgoIndex]->Sort(rectContainer->rects);
@@ -102,7 +109,7 @@ void Gui::SortingLogic() {
 			algoChooser->algos[algoChooser->selectedAlgoIndex]->Reset();
 		}
 		
-		//Changing the the actual rects colors to green
+		//Changing the selected rects colors to green
 		if (algoChooser->selectedAlgoIndex == 0) {
 			if (!rectContainer->IsSorted()) {
 				rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1, rectContainer->rects.size());
@@ -111,9 +118,8 @@ void Gui::SortingLogic() {
 		else {
 			rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j, rectContainer->rects.size());
 		}
-
 		//Applying the choosen delay
-		//std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds((int)delay));
 	}
 }
 
@@ -128,7 +134,6 @@ void Gui::DrawAndHandleButtons() {
 
 void Gui::Update() {
 	SortingLogic();
-	//std::cout << GetFPS() << std::endl;
 }
 
 void Gui::Draw() {

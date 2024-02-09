@@ -4,11 +4,11 @@
 
 class ShellSort : public ISortingAlgo {
 private:
-    int n;
     int interval;
     int temp;
 
 public:
+    int n;
 	ShellSort(int);
 	virtual void Sort(std::vector<SortableRect*> rects) override;
 	virtual void Reset() override;
@@ -27,7 +27,6 @@ void ShellSort::Sort(std::vector<SortableRect*> rects) {
     if (temp == 0) {
         temp = rects[i]->rect->height;
     }
-    
     if (j >= interval && rects[j - interval]->rect->height > temp) {
         rects[j]->rect->height = rects[j - interval]->rect->height;
         j -= interval;

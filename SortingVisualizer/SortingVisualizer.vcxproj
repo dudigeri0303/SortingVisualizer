@@ -141,7 +141,6 @@
     <ClInclude Include="Gui.h" />
     <ClInclude Include="InsertionSort.h" />
     <ClInclude Include="ISortingAlgo.h" />
-    <ClInclude Include="MergeSort.h" />
     <ClInclude Include="RectContainer.h" />
     <ClInclude Include="SelectionSort.h" />
     <ClInclude Include="ShellSort.h" />

@@ -30,7 +30,7 @@ void BucketSort::Sort(std::vector<SortableRect*> rects) {
 		}
 		i++;
 		if (i == rects.size()) {
-			buckets.insert({ 0.0, 0 });
+			buckets.insert({ 0.0f, 0 });
 		}
 	}
 	if (i == rects.size() && j < rects.size()) {
