@@ -19,3 +19,5 @@ Sorting algorithm visualizer built with Raylib.
 
 ## Preview
 [![Sorting Visualizer](https://github.com/dudigeri0303/SortingVisualizer/assets/107321900/008188e9-83ad-4ebe-8718-59a5e6908cf1)](url)
+
+<img src="https://github.com/dudigeri0303/SortingVisualizer/assets/107321900/008188e9-83ad-4ebe-8718-59a5e6908cf1" align="left" height="300" width="450">
