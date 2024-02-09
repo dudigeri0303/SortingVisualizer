@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="BucketSort.h" />
     <ClInclude Include="CountingSort.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="InsertionSort.h" />

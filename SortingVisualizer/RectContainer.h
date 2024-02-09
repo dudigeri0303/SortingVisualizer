@@ -13,8 +13,8 @@ public:
 	RectContainer();
 	~RectContainer();
 	bool IsSorted();
-	void ChangeSelectedColor(int, int);
-	void ChangeSelectedColorBack(int, int);
+	void ChangeSelectedColor(int, int, int);
+	void ChangeSelectedColorBack(int, int, int);
 	void GenerateNewRects();
 	void Draw();
 };
@@ -52,20 +52,20 @@ bool RectContainer::IsSorted() {
 	return true;
 }
 
-void RectContainer::ChangeSelectedColor(int i, int j) {
-	if (i > 0) {
+void RectContainer::ChangeSelectedColor(int i, int j, int max) {
+	if (i > 0 && i < max) {
 		rects[i]->color = GREEN;
 	}
-	if (j > 0) {
+	if (j > 0 && j < max) {
 		rects[j]->color = GREEN;
 	}
 }
 
-void RectContainer::ChangeSelectedColorBack(int i, int j) {
-	if (i > 0) {
+void RectContainer::ChangeSelectedColorBack(int i, int j, int max) {
+	if (i > 0 && i < max) {
 		rects[i]->color = BLACK;
 	}
-	if (j > 0) {
+	if (j > 0 && j < max) {
 		rects[j]->color = BLACK;
 	}
 }

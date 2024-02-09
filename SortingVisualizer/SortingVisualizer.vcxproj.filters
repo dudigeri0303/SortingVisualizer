@@ -62,5 +62,8 @@
     <ClInclude Include="CountingSort.h">
       <Filter>Header Files\SortingAlgos</Filter>
     </ClInclude>
+    <ClInclude Include="BucketSort.h">
+      <Filter>Header Files\SortingAlgos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

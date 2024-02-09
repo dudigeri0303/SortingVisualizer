@@ -85,11 +85,11 @@ void Gui::SortingLogic() {
 		//Changing the actual rects colors back to black
 		if (algoChooser->selectedAlgoIndex == 0) {
 			if (!rectContainer->IsSorted()) {
-				rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1);
+				rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1, rectContainer->rects.size());
 			}
 		}
 		else {
-			rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j);
+			rectContainer->ChangeSelectedColorBack(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j, rectContainer->rects.size());
 		}
 
 		//Running the sorting algo if the rects arent sorted already
@@ -105,15 +105,15 @@ void Gui::SortingLogic() {
 		//Changing the the actual rects colors to green
 		if (algoChooser->selectedAlgoIndex == 0) {
 			if (!rectContainer->IsSorted()) {
-				rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1);
+				rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->j, algoChooser->algos[algoChooser->selectedAlgoIndex]->j + 1, rectContainer->rects.size());
 			}
 		}
 		else {
-			rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j);
+			rectContainer->ChangeSelectedColor(algoChooser->algos[algoChooser->selectedAlgoIndex]->i, algoChooser->algos[algoChooser->selectedAlgoIndex]->j, rectContainer->rects.size());
 		}
 
 		//Applying the choosen delay
-		//std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		//std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 }
 
