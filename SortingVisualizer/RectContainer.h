@@ -38,7 +38,6 @@ std::vector<SortableRect*> RectContainer::FillRectsList(int numOfRects) {
 		std::mt19937 rng(dev());
 		std::uniform_int_distribution<std::mt19937::result_type> dist6(20, 640);
 		for (int i = 0; i < numOfRects; i++) {
-			//(self.sbc + self.width)* self.y + self.sbc
 			returnList.push_back(new SortableRect((i * (rectWidth + 2.0f)), 650.0f, rectWidth, (float)dist6(rng)));
 		}
 		return returnList;
