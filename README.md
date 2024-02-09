@@ -13,6 +13,6 @@ Implemented algorithms:<br />
 &emsp;Shell sort<br />
 &emsp;Counting sort<br />
 &emsp;Bucket sort<br />
-![image](https://github.com/dudigeri0303/SortingVisualizer/assets/107321900/008188e9-83ad-4ebe-8718-59a5e6908cf1)<br />
+
 <a href="url"><img src="https://github.com/dudigeri0303/SortingVisualizer/assets/107321900/008188e9-83ad-4ebe-8718-59a5e6908cf1" align="left" height="400" width="600" ></a>
 
